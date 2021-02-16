@@ -37,8 +37,9 @@ docs:
 	terraform-docs md . > README.md
 
 valid:
-	terraform fmt -check=true -diff=true
+	terraform fmt -check=true -recursive
 	checkov -d . --external-checks-dir ../../checkov
+	tfsec .
 
 target:
 	@read -p "Enter Module to target:" MODULE;
