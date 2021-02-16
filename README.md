@@ -1,29 +1,30 @@
-# terraform-azurerm-vpcpeer
+# terraform-azurerm-sql
 
-[![Build Status](https://github.com/JamesWoolfenden/terraform-azurerm-vpcpeer/workflows/Verify%20and%20Bump/badge.svg?branch=master)](https://github.com/JamesWoolfenden/terraform-azurerm-vpcpeer)
-[![Latest Release](https://img.shields.io/github/release/JamesWoolfenden/terraform-azurerm-vpcpeer.svg)](https://github.com/JamesWoolfenden/terraform-azurerm-vpcpeer/releases/latest)
-[![GitHub tag (latest SemVer)](https://img.shields.io/github/tag/JamesWoolfenden/terraform-azurerm-vpcpeer.svg?label=latest)](https://github.com/JamesWoolfenden/terraform-azurerm-vpcpeer/releases/latest)
+[![Build Status](https://github.com/JamesWoolfenden/terraform-azurerm-sql/workflows/Verify%20and%20Bump/badge.svg?branch=master)](https://github.com/JamesWoolfenden/terraform-azurerm-sql)
+[![Latest Release](https://img.shields.io/github/release/JamesWoolfenden/terraform-azurerm-sql.svg)](https://github.com/JamesWoolfenden/terraform-azurerm-sql/releases/latest)
+[![GitHub tag (latest SemVer)](https://img.shields.io/github/tag/JamesWoolfenden/terraform-azurerm-sql.svg?label=latest)](https://github.com/JamesWoolfenden/terraform-azurerm-sql/releases/latest)
 ![Terraform Version](https://img.shields.io/badge/tf-%3E%3D0.14.0-blue.svg)
-[![Infrastructure Tests](https://www.bridgecrew.cloud/badges/github/JamesWoolfenden/terraform-azurerm-vpcpeer/cis_aws)](https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=JamesWoolfenden%2Fterraform-azurerm-vpcpeer&benchmark=CIS+AWS+V1.2)
+[![Infrastructure Tests](https://www.bridgecrew.cloud/badges/github/JamesWoolfenden/terraform-azurerm-sql/cis_aws)](https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=JamesWoolfenden%2Fterraform-azurerm-sql&benchmark=CIS+AWS+V1.2)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
 [![checkov](https://img.shields.io/badge/checkov-verified-brightgreen)](https://www.checkov.io/)
-[![Infrastructure Tests](https://www.bridgecrew.cloud/badges/github/jameswoolfenden/terraform-azurerm-vpcpeer/general)](https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=JamesWoolfenden%2Fterraform-azurerm-vpcpeer&benchmark=INFRASTRUCTURE+SECURITY)
+[![Infrastructure Tests](https://www.bridgecrew.cloud/badges/github/jameswoolfenden/terraform-azurerm-sql/general)](https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=JamesWoolfenden%2Fterraform-azurerm-sql&benchmark=INFRASTRUCTURE+SECURITY)
+
+This is module to help you deploy SQL ON AZURE.
+
+## Usage
+
+Add **module.sql.tf** to your Terraform code:
 
 ```terraform
-module "peer" {
-  source                   = "JamesWoolfenden/peer/azure"
-  version                  = "0.2.0"
-  resource_group_a=data.azurerm_resource_group.example.name
-  resource_group_b=data.azurerm_resource_group.example.name
-  vnet_name_a="examplea"
-  vnet_name_b="exampleb"
+module "sql" {
+  source         = "JamesWoolfenden/sql/azure"
+  version        = "0.0.2"
+  resource_group = azurerm_resource_group.examplea
+  database_name  = "mydatabase"
 }
 ```
 
-Expand on these values to tag all your taggable resources.
-
-This module should be run before nearly anything else as it sets up the remote state store. To do this it needs to be run twice. The first time to create the storage and also its own remote state file.
-The second run pushes its own state to the state store.
+Supply values for your resource and database name, other values have defaults which can be over ridden.
 
 ---
 
@@ -39,16 +40,21 @@ No requirements.
 | Name | Version |
 |------|---------|
 | azurerm | n/a |
+| random | n/a |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| peername | n/a | `string` | `"peer"` | no |
-| resource\_group\_a | n/a | `any` | n/a | yes |
-| resource\_group\_b | n/a | `any` | n/a | yes |
-| vnet\_name\_a | n/a | `any` | n/a | yes |
-| vnet\_name\_b | n/a | `any` | n/a | yes |
+| account\_replication\_type | n/a | `string` | `"LRS"` | no |
+| account\_tier | n/a | `string` | `"standard"` | no |
+| administrator\_login\_password | n/a | `string` | `""` | no |
+| audit\_retention\_in\_days | Retention period for Audit logs in days | `number` | `90` | no |
+| common\_tags | This is to help you add tags to your cloud objects | `map(any)` | n/a | yes |
+| database\_name | n/a | `string` | n/a | yes |
+| resource\_group | n/a | `any` | n/a | yes |
+| sql | n/a | `map` | <pre>{<br>  "administrator_login": "admin",<br>  "minimum_tls_version": "1.2",<br>  "name": "mymssqlserver",<br>  "public_network_access_enabled": false,<br>  "version": "12.0"<br>}</pre> | no |
+| sql\_server | n/a | `string` | `"mysqlserver"` | no |
 
 ## Outputs
 
@@ -68,13 +74,13 @@ For additional context, refer to some of these links.
 
 **Got a question?**
 
-File a GitHub [issue](https://github.com/JamesWoolfenden/terraform-azurerm-vpcpeer/issues).
+File a GitHub [issue](https://github.com/JamesWoolfenden/terraform-azurerm-sql/issues).
 
 ## Contributing
 
 ### Bug Reports & Feature Requests
 
-Please use the [issue tracker](https://github.com/JamesWoolfenden/terraform-azurerm-vpcpeer/issues) to report any bugs or file feature requests.
+Please use the [issue tracker](https://github.com/JamesWoolfenden/terraform-azurerm-sql/issues) to report any bugs or file feature requests.
 
 ## Copyrights
 
@@ -112,8 +118,8 @@ under the License.
 [github]: https://github.com/jameswoolfenden
 [linkedin]: https://www.linkedin.com/in/jameswoolfenden/
 [twitter]: https://twitter.com/JimWoolfenden
-[share_twitter]: https://twitter.com/intent/tweet/?text=terraform-azurerm-vpcpeer&url=https://github.com/JamesWoolfenden/terraform-azurerm-vpcpeer
-[share_linkedin]: https://www.linkedin.com/shareArticle?mini=true&title=terraform-azurerm-vpcpeer&url=https://github.com/JamesWoolfenden/terraform-azurerm-vpcpeer
-[share_reddit]: https://reddit.com/submit/?url=https://github.com/JamesWoolfenden/terraform-azurerm-vpcpeer
-[share_facebook]: https://facebook.com/sharer/sharer.php?u=https://github.com/JamesWoolfenden/terraform-azurerm-vpcpeer
-[share_email]: mailto:?subject=terraform-azurerm-vpcpeer&body=https://github.com/JamesWoolfenden/terraform-azurerm-vpcpeer
+[share_twitter]: https://twitter.com/intent/tweet/?text=terraform-azurerm-sql&url=https://github.com/JamesWoolfenden/terraform-azurerm-sql
+[share_linkedin]: https://www.linkedin.com/shareArticle?mini=true&title=terraform-azurerm-sql&url=https://github.com/JamesWoolfenden/terraform-azurerm-sql
+[share_reddit]: https://reddit.com/submit/?url=https://github.com/JamesWoolfenden/terraform-azurerm-sql
+[share_facebook]: https://facebook.com/sharer/sharer.php?u=https://github.com/JamesWoolfenden/terraform-azurerm-sql
+[share_email]: mailto:?subject=terraform-azurerm-sql&body=https://github.com/JamesWoolfenden/terraform-azurerm-sql

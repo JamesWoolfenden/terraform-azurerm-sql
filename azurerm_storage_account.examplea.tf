@@ -12,4 +12,3 @@ resource "azurerm_storage_account" "examplea" {
     default_action = "Deny"
   }
 }
-

@@ -22,4 +22,3 @@ resource "azurerm_mssql_server" "examplea" {
     retention_in_days                       = 90
   }*/
 }
-
