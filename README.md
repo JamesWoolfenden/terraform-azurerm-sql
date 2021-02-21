@@ -42,6 +42,20 @@ No requirements.
 | azurerm | n/a |
 | random | n/a |
 
+## Modules
+
+No Modules.
+
+## Resources
+
+| Name |
+|------|
+| [azurerm_mssql_database_extended_auditing_policy](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/mssql_database_extended_auditing_policy) |
+| [azurerm_mssql_database](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/mssql_database) |
+| [azurerm_mssql_server](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/mssql_server) |
+| [azurerm_storage_account](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_account) |
+| [random_password](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/password) |
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
@@ -52,14 +66,16 @@ No requirements.
 | audit\_retention\_in\_days | Retention period for Audit logs in days | `number` | `90` | no |
 | common\_tags | This is to help you add tags to your cloud objects | `map(any)` | n/a | yes |
 | database\_name | n/a | `string` | n/a | yes |
-| resource\_group | n/a | `any` | n/a | yes |
+| resource\_group | Object that contains resource group details | `any` | n/a | yes |
 | sql | n/a | `map` | <pre>{<br>  "administrator_login": "admin",<br>  "minimum_tls_version": "1.2",<br>  "name": "mymssqlserver",<br>  "public_network_access_enabled": false,<br>  "version": "12.0"<br>}</pre> | no |
 | sql\_server | n/a | `string` | `"mysqlserver"` | no |
 
 ## Outputs
 
-No output.
-
+| Name | Description |
+|------|-------------|
+| database | n/a |
+| server | n/a |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 ## Related Projects
@@ -84,7 +100,7 @@ Please use the [issue tracker](https://github.com/JamesWoolfenden/terraform-azur
 
 ## Copyrights
 
-Copyright © 2019-2021 James Woolfenden
+Copyright 2019-2021 James Woolfenden
 
 ## License
 

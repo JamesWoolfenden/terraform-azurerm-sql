@@ -4,6 +4,7 @@ variable "common_tags" {
 }
 
 variable "resource_group" {
+  description = "Object that contains resource group details"
 }
 
 variable "account_tier" {

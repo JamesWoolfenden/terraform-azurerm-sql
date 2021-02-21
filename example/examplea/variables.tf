@@ -1,7 +1,4 @@
 variable "common_tags" {
-  type        = map(string)
-  description = "Implements the common tags scheme"
-  default = {
-    module = "terradform-azurerm-sql"
-  }
+  description = "This is to help you add tags to your cloud objects"
+  type        = map(any)
 }
