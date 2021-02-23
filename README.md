@@ -66,7 +66,7 @@ No Modules.
 | audit\_retention\_in\_days | Retention period for Audit logs in days | `number` | `90` | no |
 | common\_tags | This is to help you add tags to your cloud objects | `map(any)` | n/a | yes |
 | database\_name | n/a | `string` | n/a | yes |
-| resource\_group | n/a | `any` | n/a | yes |
+| resource\_group | Object that contains resource group details | `any` | n/a | yes |
 | sql | n/a | `map` | <pre>{<br>  "administrator_login": "sqlman",<br>  "minimum_tls_version": "1.2",<br>  "name": "mymssqlserver",<br>  "public_network_access_enabled": false,<br>  "version": "12.0"<br>}</pre> | no |
 | sql\_server | n/a | `string` | n/a | yes |
 

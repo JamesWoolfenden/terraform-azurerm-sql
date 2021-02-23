@@ -1,4 +1,4 @@
 resource "azurerm_resource_group" "examplea" {
-  name     = "examplea-sql"
+  name     = "examplea"
   location = "westeurope"
 }
