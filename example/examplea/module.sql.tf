@@ -3,4 +3,5 @@ module "sql" {
   common_tags    = var.common_tags
   resource_group = azurerm_resource_group.examplea
   database_name  = "mydatabase"
+  sql_server     = "exampleasql"
 }

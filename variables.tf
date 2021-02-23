@@ -12,6 +12,7 @@ variable "account_tier" {
 }
 
 variable "account_replication_type" {
+  type    = string
   default = "LRS"
 }
 
@@ -19,7 +20,7 @@ variable "sql" {
   default = {
     name                          = "mymssqlserver"
     version                       = "12.0"
-    administrator_login           = "admin"
+    administrator_login           = "sqlman"
     minimum_tls_version           = "1.2"
     public_network_access_enabled = false
   }
@@ -42,5 +43,5 @@ variable "audit_retention_in_days" {
 }
 
 variable "sql_server" {
-  default = "mysqlserver"
+  type = string
 }
