@@ -17,6 +17,6 @@ resource "azurerm_storage_account" "examplea" {
     ]
     default_action = "Allow"
   }
-  
+
   tags = var.common_tags
 }
