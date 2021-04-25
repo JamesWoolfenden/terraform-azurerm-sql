@@ -39,6 +39,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
+          ref: ${{ env.branch }}
           token: ${{ github.token }}
       - uses: actions/setup-python@v2
         with:
