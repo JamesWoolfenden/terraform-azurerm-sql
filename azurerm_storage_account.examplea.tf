@@ -9,11 +9,14 @@ resource "azurerm_storage_account" "examplea" {
 
   min_tls_version           = "TLS1_2"
   enable_https_traffic_only = true
+
+  #tfsec:ignore:AZU012
   network_rules {
     bypass = [
       "AzureServices",
     ]
     default_action = "Allow"
   }
+  
   tags = var.common_tags
 }
