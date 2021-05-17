@@ -3,11 +3,11 @@ output "database" {
 }
 
 output "server" {
-  value = module.sql.server
+  value     = module.sql.server
   sensitive = true
-  }
+}
 
 output "storage" {
-  value = module.sql.storage
+  value     = module.sql.storage
   sensitive = true
 }
