@@ -46,3 +46,13 @@ variable "audit_retention_in_days" {
 variable "sql_server" {
   type = string
 }
+
+variable "key_vault" {
+  default = "mykeyvault"
+}
+
+variable "soft_delete_retention_days" {
+  default = 14
+}
+
+variable "log_analytics_workspace" {}

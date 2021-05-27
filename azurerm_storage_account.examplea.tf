@@ -1,6 +1,7 @@
 resource "azurerm_storage_account" "examplea" {
   #checkov:skip=CKV_AZURE_33:Logging on logging
   #checkov:skip=CKV_AZURE_35:Causes audit logging failure
+  #checkov:skip=CKV2_AZURE_8
   name                     = var.sql_server
   account_replication_type = var.account_replication_type
   resource_group_name      = var.resource_group.name
@@ -10,12 +11,11 @@ resource "azurerm_storage_account" "examplea" {
   min_tls_version           = "TLS1_2"
   enable_https_traffic_only = true
 
-  #tfsec:ignore:AZU012
   network_rules {
     bypass = [
       "AzureServices",
     ]
-    default_action = "Allow"
+    default_action = "Deny"
   }
 
   tags = var.common_tags
